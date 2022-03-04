@@ -70,7 +70,9 @@ public class Parser
         i++;
         if (argument.ValueRequired)
         {
-            var arg = args[i++];
+            if (i == args.Length)
+                throw new RequiredValueNotPresentException(argument.Name);
+            var arg = args[i];
             if (IsArgument(arg))
                 throw new RequiredValueNotPresentException(argument.Name);
             _result[argument.Name] = arg;
