@@ -78,6 +78,10 @@ public class Parser
             _result[argument.Name] = arg;
         }
         else
+        {
+            if (i != args.Length && !IsArgument(args[i]))
+                throw new UnmatchedArgumentException(i);
             _result[argument.Name] = "true";
+        }
     }
 }
